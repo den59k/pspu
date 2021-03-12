@@ -7,12 +7,15 @@ import { DataProvider } from 'components/data'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { SideMenuProvider } from 'components/side-menu';
+import { RoomInfoProvider } from 'components/room-info'
 
 ReactDOM.render(
   <React.StrictMode>
     <DataProvider>
       <SideMenuProvider>
-        <App />
+        <RoomInfoProvider>
+          <App />
+        </RoomInfoProvider>
       </SideMenuProvider>
     </DataProvider>
   </React.StrictMode>,

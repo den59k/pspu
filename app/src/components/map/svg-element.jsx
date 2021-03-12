@@ -13,19 +13,21 @@ export default function SVGElement ({tag, attributes, info, index, onClick}){
 	}else{
 		_attributes.className = styles.contour
 	}
-	
+
 	if(info && info.number){
 		const center = getCenter(tag, attributes)
 		return (
 			<>
 				{ getComponent(tag, _attributes) }
 				<text {...center} className={styles.text}>{info.number}</text>
+				
 			</>
 		)
 	}
 	
 	return getComponent(tag, _attributes)
 }
+
 
 function getComponent (tag, attributes, key) {
 	switch(tag){

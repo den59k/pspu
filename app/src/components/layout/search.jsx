@@ -5,6 +5,7 @@ import styles from './search.module.sass'
 
 import { BsGeoAlt, BsArrowLeft } from 'react-icons/bs'
 import { useData } from 'components/data'
+import { useRoomInfo } from 'components/room-info'
 
 function getFloorList (floors){
 	const list = []
@@ -44,6 +45,12 @@ export default function Search (){
 		setShowList(true)
 	}
 
+	const { selectRoom } = useRoomInfo()
+	const onRoomClick = (floor, index) => {
+		selectRoom({ floorId: floor._id, index })
+		setShowList(false)
+	}
+
 	return (
 		<>
 			<div className={styles.search}>
@@ -55,19 +62,19 @@ export default function Search (){
 				</button>
 			</div>
 			<div className={cn(styles.searchFill, !showList && styles.closed)}>
-				<List items={filteredList}/>
+				<List items={filteredList} onRoomClick={onRoomClick}/>
 			</div>
 		</>
 	)
 }
 
 
-function List ({items}){
+function List ({items, onRoomClick}){
 
 	return (
 		<div className={styles.searchList}>
 			{items.map(item => (
-				<button key={item.floor._id + ' ' + item.index}>
+				<button key={item.floor._id + ' ' + item.index} onClick={() => onRoomClick(item.floor, item.index)}>
 					<div className={styles.title}>{item.number + ' аудитория'}</div>
 					<div className={styles.sub}>{item.floor.title}</div>
 				</button>	

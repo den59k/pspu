@@ -13,12 +13,14 @@ export default function SVGElement ({tag, attributes, info, index, onClick}){
 		_attributes.className = styles.contour
 	}
 	
-	if(info && info.number){
+	const title = info && (info.number || info.name)
+
+	if(title){
 		const center = getCenter(tag, attributes)
 		return (
 			<>
 				{ getComponent(tag, _attributes) }
-				<text {...center} className={styles.text}>{info.number}</text>
+				<text {...center} className={styles.text}>{title}</text>
 			</>
 		)
 	}

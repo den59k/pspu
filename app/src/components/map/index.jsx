@@ -1,6 +1,9 @@
 import SVGElement from './svg-element.jsx'
+import { getCenter } from './tools.js'
 
-export default function Map ({ state, onRoomClick, position, scale }){
+import styles from './style.module.sass'
+
+export default function Map ({ state, onRoomClick, position, scale, selected }){
 
 	if(!state) return null
 
@@ -8,9 +11,15 @@ export default function Map ({ state, onRoomClick, position, scale }){
 	const shape = state.shape 
 	if(!elements || !shape) return <svg></svg>
 
+	const selectedElement = elements[selected]
+	const center = selectedElement? getCenter(selectedElement.tag, selectedElement.attributes): null
+
 	return (
-		<svg {...shape} fill="none" style={{transform: `translate(${position[0]}px, ${position[1]}px) scale(${scale})`}}>
-			{elements.map((data, index) => <SVGElement {...data} index={index} key={index} onClick={onRoomClick}/> )}
-		</svg>
+		<div className={styles.container} style={{transform: `translate(${position[0]}px, ${position[1]}px) scale(${scale})`}}>
+			<svg {...shape} fill="none" >
+				{elements.map((data, index) => <SVGElement {...data} index={index} key={index} onClick={onRoomClick}/> )}
+			</svg>
+			{center && <img src="/images/geo.svg" alt="Выбранная аудитория" className={styles.geo} style={{top: center.y, left: center.x}}/>}
+		</div>
 	)
 }
