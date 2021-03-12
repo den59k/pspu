@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import cn from 'classnames'
 
 import styles from './search.module.sass'
@@ -35,10 +35,17 @@ export default function Search (){
 	const [ searchValue, setSearchValue ] = useState("")
 	const [ showList, setShowList ] = useState(false)
 
+	const { close } = useRoomInfo()
+
 	const data = useData()
 
 	const list = useMemo(() => getFloorList(data.floors), [ data ])
 	const filteredList = useMemo(() => searchValue.length > 0? getFilteredList(list, searchValue): [], [ list, searchValue ])
+
+	useEffect(() => {
+		if(showList) 
+			close()
+	}, [ showList ])
 
 	const onFocus = () => {
 		if(!showList)	searchRef.current.select()
@@ -75,7 +82,7 @@ function List ({items, onRoomClick}){
 		<div className={styles.searchList}>
 			{items.map(item => (
 				<button key={item.floor._id + ' ' + item.index} onClick={() => onRoomClick(item.floor, item.index)}>
-					<div className={styles.title}>{item.number + ' аудитория'}</div>
+					<div className={styles.title}>{item.number? (item.number + ' аудитория'): item.name }</div>
 					<div className={styles.sub}>{item.floor.title}</div>
 				</button>	
 			))}

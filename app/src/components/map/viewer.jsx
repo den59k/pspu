@@ -42,7 +42,7 @@ export default function MapViewer ({ data }){
 		setMapScale(mapScale => mapScale * 0.8)
 	}
 	
-	const { _selectedRoom, selectRoom } = useRoomInfo()
+	const { _selectedRoom, selectRoom, opened } = useRoomInfo()
 	
 	const onRoomClick = (item, index) => {
 
@@ -58,7 +58,7 @@ export default function MapViewer ({ data }){
 				position={mapPosition} 
 				scale={mapScale} 
 				onRoomClick={onRoomClick} 
-				selected={ _selectedRoom.floorId === data._id? _selectedRoom.index: -1 }
+				selected={ (opened && _selectedRoom.floorId === data._id)? _selectedRoom.index: -1 }
 			/>
 			<div className={styles.buttons}>
 				<button onMouseDown={zoomIn}><RiZoomInLine/></button>
