@@ -1,37 +1,22 @@
 import { useState } from "react"
 import Map from "."
 
-import { add, subtract } from 'mathjs'
-
 import styles from './viewer.module.sass'
 
 import { RiZoomInLine, RiZoomOutLine } from 'react-icons/ri'
 import { useRoomInfo } from "components/room-info"
 
-function getPos(e){
-	if(e.touches)
-		e = e.touches[0]
-	return [ e.clientX, e.clientY ]
-}
-
+import { getEvent } from 'libs/mouse-event'
+import { add, subtract } from 'mathjs'
 
 export default function MapViewer ({ data }){
 
 	const [ mapPosition, setMapPosition ] = useState([ 0, 0 ])
 	const [ mapScale, setMapScale ] = useState(1)
-	
-	const onTouchStart = (e) => {
-		const pos = getPos(e)
-		
-		const move = (e) => {
-			const targetPos = getPos(e)
-			
-			const delta = subtract(targetPos, pos)
-			setMapPosition(add(mapPosition, delta))
-		}
-		
-		document.addEventListener('touchmove', move, { passive: true })
-		document.addEventListener('touchend', () => document.removeEventListener('touchmove', move), { once: true })
+
+	const move = (currentPos, startPos) => {
+		const delta = subtract(currentPos, startPos)
+		setMapPosition(add(mapPosition, delta))
 	}
 	
 	const zoomIn = () => {
@@ -51,7 +36,7 @@ export default function MapViewer ({ data }){
 	
 
 	return (
-		<div className={styles.container} onTouchStart={onTouchStart}>
+		<div className={styles.container} onTouchStart={getEvent(move)} onMouseDown={getEvent(move)}>
 			<Map 
 				state={data.data} 
 				position={mapPosition} 
