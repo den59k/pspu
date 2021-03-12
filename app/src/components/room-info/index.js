@@ -5,6 +5,8 @@ import Gallery from './gallery'
 import styles from './bottom-info.module.sass'
 import { useData } from 'components/data'
 
+import { RiUser3Line, RiSlideshow2Line } from 'react-icons/ri'
+
 const Context = createContext()
 
 export function RoomInfoProvider ({ children }){
@@ -54,6 +56,8 @@ function getRoomInfo(selectedFloor, selectedRoom){
 				<div className={styles.floor}>{floor}</div>
 			</div>
 			<Gallery images={selectedRoom.images}/>
+			{selectedRoom.places && <div className={styles.info}><RiUser3Line/>{selectedRoom.places}</div>}
+			{selectedRoom.devices && <div className={styles.info}><RiSlideshow2Line/>{selectedRoom.devices}</div>}
 		</>
 	)
 }
