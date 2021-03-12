@@ -20,10 +20,12 @@ export function ModalWrapper ({children, className, style}){
 
 	const close = () => {
 		setModalWindow(null)
-
+		
 		setWindowHistory(windowHistory => {
-			if(windowHistory.length > 1)	setModalWindow(windowHistory[windowHistory.length - 2])
-			setWindowHistory(windowHistory.slice(0, -1))
+			console.log(windowHistory)
+			if(windowHistory.length > 1)	
+				setModalWindow(windowHistory[windowHistory.length - 2])
+			return windowHistory.slice(0, -1)
 		})
 		
 		window.requestAnimationFrame(() => window.scroll(scroll.left, scroll.top))
