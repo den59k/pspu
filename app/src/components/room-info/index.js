@@ -37,7 +37,7 @@ export function RoomInfoProvider ({ children }){
 	const selectRoom = (roomInfo) => {
 		if(opened){ 
 			setMoving(true)
-			setY(400)
+			setY(800)
 		}
 			
 		_setSelectedRoom(roomInfo)
