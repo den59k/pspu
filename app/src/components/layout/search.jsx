@@ -23,9 +23,12 @@ function getFloorList (floors){
 }
 
 function getFilteredList (list, searchValue){
+
+	const val = searchValue.toLowerCase()
+
 	return list.filter(item => {
 
-		return item.number?.startsWith(searchValue) || item.name?.startsWith(searchValue)
+		return item.number?.toLowerCase().startsWith(searchValue) || item.name?.toLowerCase().startsWith(val)
 	})
 }
 

@@ -45,9 +45,8 @@ export default function MapViewer ({ data }){
 	const { _selectedRoom, selectRoom, opened } = useRoomInfo()
 	
 	const onRoomClick = (item, index) => {
-
+		if(!item) return
 		selectRoom({ floorId: data._id, index })
-
 	}
 	
 
