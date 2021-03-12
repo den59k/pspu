@@ -1,0 +1,32 @@
+
+.menu
+	background-color: white
+	position: absolute
+	top: 0
+	left: 0
+	bottom: 0
+	width: 75%
+	transition: transform 0.2s
+	padding: 20px 15px
+	box-sizing: border-box
+
+.logo
+	width: 80px
+	
+.black
+	position: fixed
+	left: 0
+	top: 0
+	right: 0
+	bottom: 0
+	z-index: 20
+	background-color: rgba(0, 0, 0, 0.6)
+	transition: opacity 0.2s, visibility 0.2s
+
+	&.close
+		pointer-events: none
+		visibility: hidden
+		opacity: 0
+
+		.menu
+			transform: translateX(-100%)

@@ -1,0 +1,70 @@
+@import src/styles/constants
+	
+.list
+	display: flex
+	flex-direction: column
+	align-items: stretch
+	position: relative
+
+	.item
+		display: flex
+
+		.info
+			height: 3.5em
+			font-weight: 400
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: flex-start
+			flex: 1 1 auto
+
+		.title
+			font-weight: 500
+
+		.sub
+			font-size: 0.9em
+			color: $dark
+
+		.more
+			font-size: 1.6em
+			color: $gray
+
+		
+		&:hover
+			background-color: $gray-bkg
+
+			.more
+				color: darken($gray, 20%)
+
+
+.dropDownMenu
+	position: absolute
+	background-color: white
+	padding: 0.5em 0
+	border-radius: 0.6em
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+	transition: opacity 0.1s, transform 0.1s
+	transform-origin: right top
+	margin-right: 5px
+	margin-top: 5px
+	display: flex
+	flex-direction: column
+
+	&.closed 
+		opacity: 0
+		transform: scale(0.5, 0.7)
+		pointer-events: none
+
+	button
+		line-height: 2.8em
+		padding: 0 1.8em
+		text-align: right
+		background-color: white
+		font-size: 0.95em
+		font-weight: 500
+
+		&:hover
+			background-color: $primary
+			color: white
+
+	
