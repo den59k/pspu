@@ -12,7 +12,7 @@ export function ModalWrapper ({children, className, style}){
 
 	const open = (_modal) => {
 		setScroll({left: window.pageXOffset, top: window.pageYOffset, offset: window.innerWidth-document.body.clientWidth})
-		setWindowHistory([ ...windowHistory, _modal ])
+		setWindowHistory(windowHistory => [ ...windowHistory, _modal ])
 		window.requestAnimationFrame(() => window.scroll(0, 0))
 	}
 
