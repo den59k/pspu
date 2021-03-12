@@ -34,6 +34,7 @@ export default function MapEditorWrapper (){
 	}, [ floorId ])
 
 	const onRoomClick = (info, index) => {
+		console.log(info, index)
 		openModalMap (info, values => {
 			setEditorState(state => saveRoomInfo(state, { index, values }))
 		})
