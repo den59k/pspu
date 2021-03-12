@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useMemo } from 'react'
 import cn from 'classnames'
+import Gallery from './gallery'
 
 import styles from './bottom-info.module.sass'
 import { useData } from 'components/data'
@@ -41,6 +42,8 @@ function getRoomInfo(selectedFloor, selectedRoom){
 
 	const floor = selectedFloor.title
 
+	console.log(selectedRoom)
+
 	return (
 		<>
 			<div className={styles.content}>
@@ -50,6 +53,7 @@ function getRoomInfo(selectedFloor, selectedRoom){
 				<h4>{sub}</h4>
 				<div className={styles.floor}>{floor}</div>
 			</div>
+			<Gallery images={selectedRoom.images}/>
 		</>
 	)
 }

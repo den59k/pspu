@@ -34,3 +34,39 @@
 .content
 	padding: 30px 35px
 	
+
+.gallery
+	width: 100vw
+	height: 60vw
+	position: relative
+
+	.slider
+		display: flex
+		transition: transform 0.4s
+
+		div
+			width: 100vw
+			flex: 0 0 auto
+			height: 60vw
+			background-size: cover
+			background-position: center
+	
+
+
+	.left, .right
+		position: absolute
+		top: 0
+		bottom: 0
+		background: none
+		border: none
+		color: white
+
+		svg
+			font-size: 25px
+
+	.left
+		left: 0
+
+	.right
+		right: 0
+
